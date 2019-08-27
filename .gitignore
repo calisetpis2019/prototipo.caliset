@@ -1,0 +1,9 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# IDEs and editors
+.vs/
+obj/
+bin/
+aspnet-core/src/prototipo.caliset.Web.Host/App_Data/Logs/
+aspnet-core/src/prototipo.caliset.Web.Mvc/App_Data/Logs/
+aspnet-core/src/prototipo.caliset.Migrator/Logs/Logs.txt
