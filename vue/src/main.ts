@@ -11,10 +11,10 @@ Vue.use(iView);
 import store from './store/index';
 Vue.config.productionTip = false;
 import { appRouters,otherRouters} from './router/router';
-if(!abp.utils.getCookieValue('Abp.Localization.CultureName')){
+/*if(!abp.utils.getCookieValue('Abp.Localization.CultureName')){
   let language=navigator.language;
   abp.utils.setCookieValue('Abp.Localization.CultureName',language,new Date(new Date().getTime() + 5 * 365 * 86400000),abp.appPath);
-}
+}*/
 
 Ajax.get('/AbpUserConfiguration/GetAll').then(data=>{
   Util.abp=Util.extend(true,Util.abp,data.data.result);

@@ -14,5 +14,6 @@ namespace prototipo.caliset.EntityFrameworkCore
             : base(options)
         {
         }
+
     }
 }

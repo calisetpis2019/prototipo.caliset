@@ -52,8 +52,8 @@ export const appRouters: Array<Router> = [{
     component: main,
     children: [
         { path: 'user', permission: 'Pages.Users', meta: { title: 'Users' }, name: 'user', component: () => import('../views/setting/user/user.vue') },
-        { path: 'role', permission: 'Pages.Roles', meta: { title: 'Roles' }, name: 'role', component: () => import('../views/setting/role/role.vue') },
-        { path: 'tenant', permission: 'Pages.Tenants', meta: { title: 'Tenants' }, name: 'tenant', component: () => import('../views/setting/tenant/tenant.vue') }
+        { path: 'role', permission: 'Pages.Roles', meta: { title: 'Roles' }, name: 'role', component: () => import('../views/setting/role/role.vue') }/*,
+        { path: 'tenant', permission: 'Pages.Operations', meta: { title: 'Operations' }, name: 'operation', component: () => import('../views/setting/operation/operation.vue') }*/
     ]
 }]
 export const routers = [
