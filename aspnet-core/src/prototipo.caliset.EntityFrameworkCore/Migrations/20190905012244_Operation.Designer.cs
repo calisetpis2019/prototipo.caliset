@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using prototipo.caliset.EntityFrameworkCore;
 
 namespace prototipo.caliset.Migrations
 {
     [DbContext(typeof(calisetDbContext))]
-    partial class calisetDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190905012244_Operation")]
+    partial class Operation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
