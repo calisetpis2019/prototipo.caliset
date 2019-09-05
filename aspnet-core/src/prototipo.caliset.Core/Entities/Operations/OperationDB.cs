@@ -1,13 +1,14 @@
-﻿using Abp.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Abp.Domain.Entities.Auditing;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace prototipo.caliset.EntityFrameworkCore.Entities
+namespace Entities.Operations
 {
-    public class Operation
+    [Table("Operations")]
+    public class OperationDB : FullAuditedEntity
     {
+        protected OperationDB() { }
         public int Id { get; set; }
 
         [DataType(DataType.Date)]
@@ -16,5 +17,6 @@ namespace prototipo.caliset.EntityFrameworkCore.Entities
 
         public string Commodity { get; set; }
         public string Destiny { get; set; }
+
     }
 }
