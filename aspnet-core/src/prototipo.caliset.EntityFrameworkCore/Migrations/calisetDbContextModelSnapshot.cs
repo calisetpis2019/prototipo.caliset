@@ -878,7 +878,7 @@ namespace prototipo.caliset.Migrations
                     b.ToTable("AbpOrganizationUnitRoles");
                 });
 
-            modelBuilder.Entity("Entities.Operations.OperationDB", b =>
+            modelBuilder.Entity("Models.Operations.Operation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

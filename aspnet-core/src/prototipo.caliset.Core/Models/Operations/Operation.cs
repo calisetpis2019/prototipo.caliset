@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using Abp.Domain.Entities.Auditing;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Operations
+namespace prototipo.caliset.Models.Operations
 {
     [Table("Operations")]
-    public class OperationDB : FullAuditedEntity
+    public class Operation : FullAuditedEntity
     {
-        protected OperationDB() { }
+        protected Operation() { }
         public int Id { get; set; }
 
         [DataType(DataType.Date)]

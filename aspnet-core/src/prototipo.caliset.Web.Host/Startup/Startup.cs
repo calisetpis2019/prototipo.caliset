@@ -17,6 +17,8 @@ using prototipo.caliset.Identity;
 
 using Abp.AspNetCore.SignalR.Hubs;
 using Microsoft.AspNetCore.Mvc;
+using prototipo.caliset.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace prototipo.caliset.Web.Host.Startup
 {
@@ -33,6 +35,8 @@ namespace prototipo.caliset.Web.Host.Startup
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<calisetDbContext>(options => options.UseSqlServer("Server=N71412542\\LOCALHOST; Database=calisetDb; Trusted_Connection=True;"));
             // MVC
             services.AddMvc(
                 options => options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName))
@@ -76,6 +80,7 @@ namespace prototipo.caliset.Web.Host.Startup
                     Type = "apiKey"
                 });
             });
+
 
             // Configure Abp and Dependency Injection
             return services.AddAbp<calisetWebHostModule>(

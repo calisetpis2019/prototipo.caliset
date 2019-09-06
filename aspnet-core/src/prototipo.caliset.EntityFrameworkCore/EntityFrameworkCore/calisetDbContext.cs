@@ -15,6 +15,6 @@ namespace prototipo.caliset.EntityFrameworkCore
         {
         }
 
-        public virtual DbSet<Entities.Operations.OperationDB> Operation { get; set; }
+        public virtual DbSet<Models.Operations.Operation> Operation { get; set; }
     }
 }
