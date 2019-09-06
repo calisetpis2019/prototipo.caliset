@@ -1,19 +1,19 @@
-﻿using Abp.AutoMapper;
-using prototipo.caliset.Models.Operations;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
+using prototipo.caliset.Models.Operations;
 
 namespace prototipo.caliset.Operations.Dto
 {
     [AutoMapFrom(typeof(Operation))]
-    public class CreateOperationInput
+    public class OperationDto : EntityDto<long>
     {
         [Required]
         public DateTime Date { get; set; }
 
         public string Commodity { get; set; }
+
         public string Destiny { get; set; }
 
         public DateTime CreationTime { get; set; }

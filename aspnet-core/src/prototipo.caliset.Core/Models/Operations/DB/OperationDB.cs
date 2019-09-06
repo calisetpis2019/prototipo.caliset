@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace prototipo.caliset.Models.Operations
 {
     [Table("Operations")]
-    public class Operation : FullAuditedEntity
+    public class OperationDB : FullAuditedEntity<long>
     {
-        protected Operation() { }
+        protected OperationDB() { }
 
         [DataType(DataType.Date)]
         [Required]

@@ -27,8 +27,8 @@ namespace prototipo.caliset.Operations
 
         public async Task Create(CreateOperationInput input)
         {
-            Operation output = Mapper.Map<CreateOperationInput, Operation>(input);
-            await _operationManager.Create(output);
+            var user = ObjectMapper.Map<Operation>(input);
+            await _operationManager.Create(user);
         }
 
         public void Delete(DeleteOperationInput input)

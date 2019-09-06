@@ -20,7 +20,7 @@ class OperationModule extends ListModule<OperationState,any,Operation>{
     actions={
         async getAll(context:ActionContext<OperationState,any>,payload:any){
             context.state.loading=true;
-            let reponse=await Ajax.get('/api/services/app/Operation/All',{params:payload.data});
+            let reponse=await Ajax.get('/api/services/app/Operation/All');
             context.state.loading=false;
             let page=reponse.data.result as PageResult<Operation>;
             context.state.totalCount=page.totalCount;
