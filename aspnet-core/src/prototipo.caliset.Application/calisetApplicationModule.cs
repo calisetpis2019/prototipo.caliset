@@ -2,6 +2,8 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using prototipo.caliset.Authorization;
+using prototipo.caliset.Models.Operations;
+using prototipo.caliset.Operations.Dto;
 
 namespace prototipo.caliset
 {
@@ -13,6 +15,11 @@ namespace prototipo.caliset
         public override void PreInitialize()
         {
             Configuration.Authorization.Providers.Add<calisetAuthorizationProvider>();
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(mapper =>
+            {
+                mapper.CreateMap<CreateOperationInput, Operation>().ReverseMap();
+            });
+
         }
 
         public override void Initialize()

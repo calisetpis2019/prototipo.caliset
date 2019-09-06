@@ -35,21 +35,31 @@
             this.pagerequest.skipCount=(this.currentPage-1)*this.pageSize;
             
             await this.$store.dispatch({
-                type:'operation/All',
+                type:'tenant/getAll',
                 data:this.pagerequest
             })
         }
-
+        get pageSize(){
+            return this.$store.state.tenant.pageSize;
+        }
+        get totalCount(){
+            return this.$store.state.tenant.totalCount;
+        }
+        get currentPage(){
+            return this.$store.state.tenant.currentPage;
+        }
         columns=[{
-            title:this.L('Date'),
-            key:'date'
+            title:this.L('TenancyName'),
+            key:'tenancyName'
         },{
-            title:this.L('Commodity'),
-            key:'commodity'
-        },{
-            title:this.L('Destiny'),
-            key:'destiny'
-        }/*,{
+            title:this.L('Name'),
+            key:'name'
+            }, {
+                title: this.L('IsActive'),
+                render: (h: any, params: any) => {
+                    return h('span', params.row.isActive ? this.L('Yes') : this.L('No'))
+                }
+            },{
             title:this.L('Actions'),
             key:'Actions',
             width:150,
@@ -95,7 +105,7 @@
                     },this.L('Delete'))
                 ])
             }
-        }*/]
+        }]
         async created(){
             this.getpage();
         }
