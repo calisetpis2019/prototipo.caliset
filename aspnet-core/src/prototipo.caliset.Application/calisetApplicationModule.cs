@@ -18,6 +18,8 @@ namespace prototipo.caliset
             Configuration.Modules.AbpAutoMapper().Configurators.Add(mapper =>
             {
                 mapper.CreateMap<CreateOperationInput, Operation>().ReverseMap();
+                mapper.CreateMap<GetOperationInput, Operation>().ReverseMap();
+                mapper.CreateMap<GetOperationOutput, Operation>().ReverseMap();
             });
 
         }

@@ -21,14 +21,14 @@ namespace prototipo.caliset.Operations
         public IEnumerable<GetOperationOutput> All()
         {
             var getAll = _operationManager.GetAll().ToList();
-            List<GetOperationOutput> output = Mapper.Map<List<Operation>, List<GetOperationOutput>>(getAll);
+            List<GetOperationOutput> output = ObjectMapper.Map<List<GetOperationOutput>>(getAll);
             return output;
         }
 
         public async Task Create(CreateOperationInput input)
         {
-            var user = ObjectMapper.Map<Operation>(input);
-            await _operationManager.Create(user);
+            var operation = ObjectMapper.Map<Operation>(input);
+            await _operationManager.Create(operation);
         }
 
         public void Delete(DeleteOperationInput input)
@@ -39,14 +39,14 @@ namespace prototipo.caliset.Operations
         public GetOperationOutput GetOperationById(GetOperationInput input)
         {
             var getOperation = _operationManager.GetOperationById(input.Id);
-            GetOperationOutput output = Mapper.Map<Operation, GetOperationOutput>(getOperation);
+            GetOperationOutput output = ObjectMapper.Map<GetOperationOutput>(getOperation);
             return output;
         }
 
         public void Update(UpdateOperationInput input)
         {
-            Operation output = Mapper.Map<UpdateOperationInput, Operation>(input);
-            _operationManager.Update(output);
+            var operation = _operationManager.GetOperationById(input.Id);
+            _operationManager.Update(operation);
         }
     }
 }
