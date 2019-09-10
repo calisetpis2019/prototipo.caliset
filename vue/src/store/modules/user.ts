@@ -31,7 +31,9 @@ class UserModule extends ListModule<UserState,any,User>{
             context.state.loading=false;
             let page=reponse.data.result as PageResult<User>;
             context.state.totalCount=page.totalCount;
-            context.state.list=page.items;
+            context.state.list = page.items;
+            console.log(context);
+            console.log(page);
         },
         async create(context:ActionContext<UserState,any>,payload:any){
             await Ajax.post('/api/services/app/User/Create',payload.data);

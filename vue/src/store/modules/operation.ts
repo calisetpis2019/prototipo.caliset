@@ -18,13 +18,14 @@ class OperationModule extends ListModule<OperationState,any,Operation>{
         editOperation:new Operation()
     }
     actions={
-        async getAll(context:ActionContext<OperationState,any>,payload:any){
+        async getAll(context:ActionContext<OperationState,any>){
             context.state.loading=true;
-            let reponse=await Ajax.get('/api/services/app/Operation/All');
+            let reponse = await Ajax.get('/api/services/app/Operation/GetAll');
             context.state.loading=false;
-            let page=reponse.data.result as PageResult<Operation>;
-            context.state.totalCount=page.totalCount;
-            context.state.list=page.items;
+            //let page=reponse.data.result as PageResult<Operation>;
+            context.state.totalCount = reponse.data.result.length;
+            context.state.list = reponse.data.result;
+            console.log(context);
         },
         async create(context:ActionContext<OperationState,any>,payload:any){
             await Ajax.post('/api/services/app/Operation/Create',payload.data);

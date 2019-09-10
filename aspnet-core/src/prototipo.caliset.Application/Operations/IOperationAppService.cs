@@ -9,7 +9,7 @@ namespace prototipo.caliset.Operations
 {
     public interface IOperationAppService : IApplicationService
     {
-        IEnumerable<GetOperationOutput> All();
+        IEnumerable<GetOperationOutput> GetAll();
         Task Create(CreateOperationInput input);
         void Update(UpdateOperationInput input);
         void Delete(DeleteOperationInput input);

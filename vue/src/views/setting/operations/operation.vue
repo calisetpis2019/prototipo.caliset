@@ -5,9 +5,9 @@
                 <Form ref="queryForm" :label-width="80" label-position="left" inline>
                     <Row :gutter="16">
                         <Col span="6">
-                            <FormItem :label="L('Keyword')+':'" style="width:100%">
-                                <Input v-model="pagerequest.keyword" :placeholder="L('OperName')"></Input>
-                            </FormItem>
+                        <FormItem :label="L('Keyword')+':'" style="width:100%">
+                            <Input v-model="pagerequest.keyword" :placeholder="L('OperName')"></Input>
+                        </FormItem>
                         </Col>
                     </Row>
                     <Row>
@@ -18,12 +18,12 @@
                 <div class="margin-top-10">
                     <Table :loading="loading" :columns="columns" :no-data-text="L('NoDatas')" border :data="list">
                     </Table>
-                    <Page  show-sizer class-name="fengpage" :total="totalCount" class="margin-top-10" @on-change="pageChange" @on-page-size-change="pagesizeChange" :page-size="pageSize" :current="currentPage"></Page>
+                    <Page show-sizer class-name="fengpage" :total="totalCount" class="margin-top-10" @on-change="pageChange" @on-page-size-change="pagesizeChange" :page-size="pageSize" :current="currentPage"></Page>
                 </div>
             </div>
         </Card>
         <create-operation v-model="createModalShow" @save-success="getpage"></create-operation>
-<!--        <edit-user v-model="editModalShow" @save-success="getpage"></edit-user> -->
+        <!--        <edit-user v-model="editModalShow" @save-success="getpage"></edit-user> -->
     </div>
 </template>
 <script lang="ts">
@@ -34,8 +34,6 @@
     import CreateOperation from './create-operation.vue'
 
     class PageOperationRequest extends PageRequest {
-        keyword: string = '';
-        isActive: boolean = null;
     }
 
     @Component({
@@ -43,60 +41,63 @@
     })
     export default class Operations extends AbpBase {
         pagerequest: PageOperationRequest = new PageOperationRequest();
+        //creationTime: Date[] = [];
 
         createModalShow: boolean = false;
-        
-        get list(){
-            return this.$store.state.tenant.list;
+
+        get list() {
+            return this.$store.state.operation.list;
         };
-        get loading(){
-            return this.$store.state.tenant.loading;
+        get loading() {
+            return this.$store.state.operation.loading;
         }
 
         create() {
             this.createModalShow = true;
         }
-        pageChange(page:number){
-            this.$store.commit('tenant/setCurrentPage',page);
+        pageChange(page: number) {
+            this.$store.commit('operation/setCurrentPage', page);
             this.getpage();
         }
-        pagesizeChange(pagesize:number){
-            this.$store.commit('tenant/setPageSize',pagesize);
+        pagesizeChange(pagesize: number) {
+            this.$store.commit('operation/setPageSize', pagesize);
             this.getpage();
         }
-        async getpage(){
-            
-            this.pagerequest.maxResultCount=this.pageSize;
-            this.pagerequest.skipCount=(this.currentPage-1)*this.pageSize;
-            
+
+        async getpage() {
+
             await this.$store.dispatch({
-                type:'operation/getAll',
-                data:this.pagerequest
+                type: 'operation/getAll',
+                data: null
             })
+            console.log(this.pagerequest);
         }
-        get pageSize(){
-            return this.$store.state.tenant.pageSize;
+        get pageSize() {
+            return this.$store.state.operation.pageSize;
         }
-        get totalCount(){
-            return this.$store.state.tenant.totalCount;
+        get totalCount() {
+            return this.$store.state.operation.totalCount;
         }
-        get currentPage(){
-            return this.$store.state.tenant.currentPage;
+        get currentPage() {
+            return this.$store.state.operation.currentPage;
         }
-        columns=[
-        {
-            title:this.L('Commodity'),
-            key:'commodity'
-        },
-        {
-            title:this.L('Destiny'),
-            key:'name'
-        }, 
-        {
-            title: this.L('Date'),
-            key:'date'
-        }]
-        async created(){
+        columns = [
+            {
+                title: this.L('Commodity'),
+                key: 'commodity'
+            },
+            {
+                title: this.L('Destiny'),
+                key: 'destiny'
+            },
+            {
+                title: this.L('Date'),
+                key: 'date',
+                render:(h:any,params:any)=>{
+                    return h('span',new Date(params.row.date).toLocaleDateString())
+                }
+            }]
+        async created() {
             this.getpage();
         }
     }

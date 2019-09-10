@@ -7,3 +7,4 @@ bin/
 aspnet-core/src/prototipo.caliset.Web.Host/App_Data/Logs/
 aspnet-core/src/prototipo.caliset.Web.Mvc/App_Data/Logs/
 aspnet-core/src/prototipo.caliset.Migrator/Logs/Logs.txt
+/aspnet-core/src/prototipo.caliset.Web.Host/appsettings.json

@@ -18,7 +18,7 @@ namespace prototipo.caliset.Operations
             _operationManager = operationManager;
         }
 
-        public IEnumerable<GetOperationOutput> All()
+        public IEnumerable<GetOperationOutput> GetAll()
         {
             var getAll = _operationManager.GetAll().ToList();
             List<GetOperationOutput> output = ObjectMapper.Map<List<GetOperationOutput>>(getAll);
