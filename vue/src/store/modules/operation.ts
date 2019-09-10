@@ -53,4 +53,4 @@ class OperationModule extends ListModule<OperationState,any,Operation>{
     }
 }
 const operationModule=new OperationModule();
-export default OperationModule;
+export default operationModule;
