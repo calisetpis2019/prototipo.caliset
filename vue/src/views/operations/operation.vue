@@ -41,8 +41,7 @@
     })
     export default class Operations extends AbpBase {
         pagerequest: PageOperationRequest = new PageOperationRequest();
-        //creationTime: Date[] = [];
-
+        
         createModalShow: boolean = false;
 
         get list() {
@@ -68,7 +67,7 @@
 
             await this.$store.dispatch({
                 type: 'operation/getAll',
-                data: null
+                data: this.pagerequest
             })
             console.log(this.pagerequest);
         }

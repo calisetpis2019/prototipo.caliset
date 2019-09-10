@@ -16,10 +16,7 @@
                             <Input v-model="oper.destiny" :maxlength="1024"></Input>
                         </FormItem>
                         <FormItem :label="L('Date')" prop="date">
-                            <Input v-model="oper.date" type="date"></Input>
-                        </FormItem>
-                        <FormItem :label="L('CreationDate')" prop="creationDate">
-                            <Input v-model="oper.creationDate" type="date"></Input>
+                            <DatePicker v-model="oper.date" format="yyyy-MM-dd" style="width:100%" :placeholder="L('SelectDate')"></DatePicker>
                         </FormItem>
                     </TabPane>
                 </Tabs>
@@ -34,17 +31,18 @@
 
 <script lang="ts">
     import { Component, Vue,Inject, Prop,Watch } from 'vue-property-decorator';
-    import Util from '../../../lib/util'
-    import AbpBase from '../../../lib/abpbase'
-    import Operation from '../../../store/entities/operation'
+    import Util from '@/lib/util'
+    import AbpBase from '@/lib/abpbase'
+    import Operation from '@/store/entities/operation'
     @Component
     export default class CreateOperation extends AbpBase{
         @Prop({type:Boolean,default:false}) value:boolean;
         oper:Operation=new Operation();
 
-        save(){
+        save() {
             (this.$refs.operForm as any).validate(async (valid:boolean)=>{
-                if(valid){
+                if (valid) {
+                    
                     await this.$store.dispatch({
                         type:'operation/create',
                         data:this.oper
@@ -67,9 +65,8 @@
 
         operRule={
             commodity:[{required: true,message:this.L('FieldIsRequired',undefined,this.L('Commodity')),trigger: 'blur'}],
-            destiny:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('Destiny')),trigger: 'blur'}],
-            date:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('Date')),trigger: 'blur'},{type: 'date'}],
-            creationDate:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('CreationDate')),trigger: 'blur'},{type: 'date'}],
+            destiny:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('Destiny')),trigger: 'blur'}]
+            //date:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('Date')),trigger: 'blur'},{type: 'DatePicker'}]
         }
     }
 </script>
