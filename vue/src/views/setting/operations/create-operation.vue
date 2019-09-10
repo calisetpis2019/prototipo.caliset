@@ -18,9 +18,6 @@
                         <FormItem :label="L('Date')" prop="date">
                             <Input v-model="oper.date" type="date"></Input>
                         </FormItem>
-                        <FormItem :label="L('CreationDate')" prop="creationDate">
-                            <Input v-model="oper.creationDate" type="date"></Input>
-                        </FormItem>
                     </TabPane>
                 </Tabs>
             </Form>
@@ -43,6 +40,19 @@
         oper:Operation=new Operation();
 
         save(){
+        	var today = (new Date()).getTime();
+//        	today = today.getTime();
+
+        	var offset = new Date();
+
+        	this.oper.creationTime = new Date(today - 3*60*60*1000 );
+
+/*
+        	this.oper.creationTime = 
+        	this.oper.creationTime = this.oper.creationTime.getTime();
+        	this.oper.creationTime = this.oper.creationTime  (new Date()).getTime() + (new Date()).getTimezoneOffset() );
+*/        	
+
             (this.$refs.operForm as any).validate(async (valid:boolean)=>{
                 if(valid){
                     await this.$store.dispatch({
@@ -68,8 +78,7 @@
         operRule={
             commodity:[{required: true,message:this.L('FieldIsRequired',undefined,this.L('Commodity')),trigger: 'blur'}],
             destiny:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('Destiny')),trigger: 'blur'}],
-            date:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('Date')),trigger: 'blur'},{type: 'date'}],
-            creationDate:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('CreationDate')),trigger: 'blur'},{type: 'date'}],
+            date:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('Date')),trigger: 'blur'}],
         }
     }
 </script>

@@ -5,4 +5,5 @@ export default class Operation extends Entity<number>{
     commodity: string;
     destiny: string;
     date: DatePicker;
+    creationTime: Date;
 }
