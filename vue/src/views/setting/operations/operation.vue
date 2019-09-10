@@ -9,11 +9,6 @@
                                 <Input v-model="pagerequest.keyword" :placeholder="L('OperName')"></Input>
                             </FormItem>
                         </Col>
-                        <Col span="6">
-                            <FormItem :label="L('CreationDime')+':'" style="width:100%">
-                                <DatePicker  v-model="creationDime" type="datetimerange" format="yyyy-MM-dd" style="width:100%" placement="bottom-end" :placeholder="L('SelectDate')"></DatePicker>
-                            </FormItem>
-                        </Col>
                     </Row>
                     <Row>
                         <Button @click="create" icon="android-add" type="primary" size="large">{{L('Add')}}</Button>
@@ -51,8 +46,23 @@
 
         createModalShow: boolean = false;
         
+        get list(){
+            return this.$store.state.tenant.list;
+        };
+        get loading(){
+            return this.$store.state.tenant.loading;
+        }
+
         create() {
             this.createModalShow = true;
+        }
+        pageChange(page:number){
+            this.$store.commit('tenant/setCurrentPage',page);
+            this.getpage();
+        }
+        pagesizeChange(pagesize:number){
+            this.$store.commit('tenant/setPageSize',pagesize);
+            this.getpage();
         }
         async getpage(){
             
@@ -60,7 +70,7 @@
             this.pagerequest.skipCount=(this.currentPage-1)*this.pageSize;
             
             await this.$store.dispatch({
-                type:'tenant/getAll',
+                type:'operation/getAll',
                 data:this.pagerequest
             })
         }
@@ -85,10 +95,6 @@
         {
             title: this.L('Date'),
             key:'date'
-        },
-        {
-            title:this.L('CreationDate'),
-            key:'creationDate'
         }]
         async created(){
             this.getpage();
