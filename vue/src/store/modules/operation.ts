@@ -25,7 +25,7 @@ class OperationModule extends ListModule<OperationState,any,Operation>{
             //let page=reponse.data.result as PageResult<Operation>;
             context.state.totalCount = reponse.data.result.length;
             context.state.list = reponse.data.result;
-            console.log(context);
+            //console.log(context);
         },
         async create(context:ActionContext<OperationState,any>,payload:any){
             await Ajax.post('/api/services/app/Operation/Create',payload.data);
