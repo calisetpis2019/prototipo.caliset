@@ -113,7 +113,9 @@
     <text name="UnLocked">Desbloqueado</text>
     <text name="PasswordPlaceholder">Contraseña</text>
     <text name="LockScreen">Bloquear pantalla</text>
-
+    <text name="Date">Fecha</text>
+    <text name="CreationDate">Fecha de Creación</text>
     <text name="AppName">Caliset</text>
+    
   </texts>
 </localizationDictionary>
