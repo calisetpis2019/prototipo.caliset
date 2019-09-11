@@ -12,8 +12,8 @@ namespace prototipo.caliset.Clients
     public class ClientAppService : ApplicationService, IClientAppService
     {
 
-        public readonly IClientManager _clientManager;
-        private ClientAppService(IClientManager clientManager)
+        private readonly IClientManager _clientManager;
+        public ClientAppService(IClientManager clientManager)
         {
             _clientManager = clientManager;
         }

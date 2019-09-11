@@ -1,0 +1,10 @@
+Crear Permisos:
+Clase "PermissionNames.cs" en el proyecto Core carpeta Authorization
+Despuoes  en el mismo lugar calisetAuasodijsProvider 
+se agregan context.Create..... (lo blanco es la etiqueta anterior) (lo rojo se averigua)
+
+Luego desde el swagger se le agrega el permiso al role con la funcion "Create"de Roles
+
+Luego en las operaciones de la capa Core le ponemos arriba la etiqueta "AbpAutorize(PermissionNames.[Nombre])"
+
+Asignar 
