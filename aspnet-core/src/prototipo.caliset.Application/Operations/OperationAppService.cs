@@ -7,6 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//IMPORT NECESARIOS PARA PERMISOS
+using prototipo.caliset.Authorization;
+using Abp.Authorization;
+//////////////////////////////////
+
 
 namespace prototipo.caliset.Operations
 {
@@ -18,6 +23,7 @@ namespace prototipo.caliset.Operations
             _operationManager = operationManager;
         }
 
+        [AbpAuthorize(PermissionNames.Pages_Operaciones)]
         public IEnumerable<GetOperationOutput> GetAll()
         {
             var getAlll = _operationManager.GetAll().ToList();
