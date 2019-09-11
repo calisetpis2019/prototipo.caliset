@@ -1,7 +1,7 @@
 <template>
     <div>
         <Modal
-         :title="L('CreateNewOperation')"
+         :title="L('EditOperation')"
          :value="value"
          @on-ok="save"
          @on-visible-change="visibleChange"
@@ -35,16 +35,18 @@
     import AbpBase from '@/lib/abpbase'
     import Operation from '@/store/entities/operation'
     @Component
-    export default class CreateOperation extends AbpBase{
+    export default class EditOperation extends AbpBase{
         @Prop({type:Boolean,default:false}) value:boolean;
         oper:Operation=new Operation();
-
+        created(){
+            
+        }
         save() {
             (this.$refs.operForm as any).validate(async (valid:boolean)=>{
                 if (valid) {
                     
                     await this.$store.dispatch({
-                        type:'operation/create',
+                        type:'operation/update',
                         data:this.oper
                     });
                     (this.$refs.operForm as any).resetFields();
@@ -60,6 +62,8 @@
         visibleChange(value:boolean){
             if(!value){
                 this.$emit('input',value);
+            } else {
+                this.oper = Util.extend(true, {}, this.$store.state.operation.editOperation);
             }
         }
 
