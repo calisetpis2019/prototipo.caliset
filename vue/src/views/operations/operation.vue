@@ -23,7 +23,7 @@
             </div>
         </Card>
         <create-operation v-model="createModalShow" @save-success="getpage"></create-operation>
-        <!--        <edit-user v-model="editModalShow" @save-success="getpage"></edit-user> -->
+        <edit-operation v-model="editModalShow" @save-success="getpage"></edit-operation>
     </div>
 </template>
 <script lang="ts">
@@ -32,18 +32,22 @@
     import AbpBase from '@/lib/abpbase'
     import PageRequest from '@/store/entities/page-request'
     import CreateOperation from './create-operation.vue'
+    import EditOperation from './edit-operation.vue'
 
     class PageOperationRequest extends PageRequest {
     }
 
     @Component({
-        components: { CreateOperation }
+        components: { CreateOperation, EditOperation }
     })
     export default class Operations extends AbpBase {
+        edit(){
+            this.editModalShow=true;
+        }
         pagerequest: PageOperationRequest = new PageOperationRequest();
         
         createModalShow: boolean = false;
-
+        editModalShow:boolean=false;
         get list() {
             return this.$store.state.operation.list;
         };
@@ -95,7 +99,53 @@
                 render:(h:any,params:any)=>{
                     return h('span',new Date(params.row.date).toLocaleDateString())
                 }
-            }]
+            },{
+            title:this.L('Actions'),
+            key:'Actions',
+            width:150,
+            render:(h:any,params:any)=>{
+                return h('div',[
+                    h('Button',{
+                        props:{
+                            type:'primary',
+                            size:'small'
+                        },
+                        style:{
+                            marginRight:'5px'
+                        },
+                        on:{
+                            click:()=>{
+                                this.$store.commit('operation/edit',params.row);
+                                this.edit();
+                            }
+                        }
+                    },this.L('Edit')),
+                    h('Button',{
+                        props:{
+                            type:'error',
+                            size:'small'
+                        },
+                        on:{
+                            click:async ()=>{
+                                this.$Modal.confirm({
+                                        title:this.L('Tips'),
+                                        content:this.L('DeleteOperationConfirm'),
+                                        okText:this.L('Yes'),
+                                        cancelText:this.L('No'),
+                                        onOk:async()=>{
+                                            await this.$store.dispatch({
+                                                type:'operation/delete',
+                                                data:params.row
+                                            })
+                                            await this.getpage();
+                                        }
+                                })
+                            }
+                        }
+                    },this.L('Delete'))
+                ])
+            }
+        }]
         async created() {
             this.getpage();
         }

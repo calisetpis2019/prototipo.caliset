@@ -30,14 +30,17 @@ class OperationModule extends ListModule<OperationState,any,Operation>{
         async create(context:ActionContext<OperationState,any>,payload:any){
             await Ajax.post('/api/services/app/Operation/Create',payload.data);
         },
-        async update(context:ActionContext<OperationState,any>,payload:any){
+        async update(context: ActionContext<OperationState, any>, payload: any) {
+            console.log("update: ");
+            console.log(payload.data);
             await Ajax.put('/api/services/app/Operation/Update',payload.data);
         },
         async delete(context:ActionContext<OperationState,any>,payload:any){
             await Ajax.delete('/api/services/app/Operation/Delete?Id='+payload.data.id);
         },
         async get(context:ActionContext<OperationState,any>,payload:any){
-            let reponse=await Ajax.get('/api/services/app/Operation/GetOperationById?Id='+payload.id);
+            let reponse = await Ajax.get('/api/services/app/Operation/GetOperationById?Id=' + payload.id);
+            //console.log(reponse.data.result);
             return reponse.data.result as Operation;
         }
     };
@@ -48,8 +51,8 @@ class OperationModule extends ListModule<OperationState,any,Operation>{
         setPageSize(state:OperationState,pagesize:number){
             state.pageSize=pagesize;
         },
-        edit(state:OperationState,Operation:Operation){
-            state.editOperation=Operation;
+        edit(state:OperationState,operation:Operation){
+            state.editOperation=operation;
         }
     }
 }

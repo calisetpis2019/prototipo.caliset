@@ -8,7 +8,7 @@
         >
             <Form ref="userForm"  label-position="top" :rules="userRule" :model="user">
                 <Tabs value="detail">
-                    <TabPane :label="L('UserDetails')" name="detail">
+                    <TabPane :label="L('Details')" name="detail">
                         <FormItem :label="L('UserName')" prop="userName">
                             <Input v-model="user.userName" :maxlength="32" :minlength="2"></Input>
                         </FormItem>
@@ -25,7 +25,7 @@
                             <Checkbox v-model="user.isActive">{{L('IsActive')}}</Checkbox>
                         </FormItem>
                     </TabPane>
-                    <TabPane :label="L('UserRoles')" name="roles">
+                    <TabPane :label="L('Roles')" name="roles">
                         <CheckboxGroup v-model="user.roleNames">
                             <Checkbox :label="role.normalizedName" v-for="role in roles" :key="role.id"><span>{{role.name}}</span></Checkbox>
                         </CheckboxGroup>
