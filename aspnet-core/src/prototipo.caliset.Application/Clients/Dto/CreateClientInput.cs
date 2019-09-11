@@ -1,0 +1,15 @@
+﻿using Abp.AutoMapper;
+using prototipo.caliset.Models.Clients;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+
+namespace prototipo.caliset.Clients.Dto
+{
+    [AutoMapFrom(typeof(Client))]
+    public class CreateClientInput
+    {
+        public string Name { get; set; }
+    }
+}

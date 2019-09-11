@@ -2,6 +2,8 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using prototipo.caliset.Authorization;
+using prototipo.caliset.Clients.Dto;
+using prototipo.caliset.Models.Clients;
 using prototipo.caliset.Models.Operations;
 using prototipo.caliset.Operations.Dto;
 
@@ -20,6 +22,10 @@ namespace prototipo.caliset
                 mapper.CreateMap<CreateOperationInput, Operation>().ReverseMap();
                 mapper.CreateMap<GetOperationInput, Operation>().ReverseMap();
                 mapper.CreateMap<GetOperationOutput, Operation>().ReverseMap();
+
+                mapper.CreateMap<CreateClientInput, Client>().ReverseMap();
+                mapper.CreateMap<GetClientInput, Client>().ReverseMap();
+                mapper.CreateMap<GetClientOutput, Client>().ReverseMap();
             });
 
         }
