@@ -20,8 +20,8 @@ namespace prototipo.caliset.Operations
 
         public IEnumerable<GetOperationOutput> GetAll()
         {
-            var getAll = _operationManager.GetAll().ToList();
-            List<GetOperationOutput> output = ObjectMapper.Map<List<GetOperationOutput>>(getAll);
+            var getAlll = _operationManager.GetAll().ToList();
+            List<GetOperationOutput> output = ObjectMapper.Map<List<GetOperationOutput>>(getAlll);
             return output;
         }
 
