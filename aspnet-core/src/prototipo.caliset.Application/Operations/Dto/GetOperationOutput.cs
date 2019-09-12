@@ -11,6 +11,6 @@ namespace prototipo.caliset.Operations.Dto
         public DateTime Date { get; set; }
         public string Commodity { get; set; }
         public string Destiny { get; set; }
-        public ClientDto Client { get; set; }
+        public int ClientId { get; set; }
     }
 }

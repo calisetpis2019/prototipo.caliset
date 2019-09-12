@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Domain.Services;
 using Abp.UI;
+using prototipo.caliset.Models.Clients;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,9 +10,11 @@ namespace prototipo.caliset.Models.Operations
     public class OperationManager:DomainService, IOperationManager
     {
         private readonly IRepository<Operation> _repositoryOperation;
-        public OperationManager(IRepository<Operation> repositoryOperation)
+        private readonly IRepository<Client> _repositoryClient;
+        public OperationManager(IRepository<Operation> repositoryOperation, IRepository<Client> repositoryClient)
         {
             _repositoryOperation = repositoryOperation;
+            _repositoryClient = repositoryClient;
         }
 
         public async Task<Operation> Create(Operation entity)
@@ -23,6 +26,7 @@ namespace prototipo.caliset.Models.Operations
             }
             else
             {
+                entity.Client = _repositoryClient.FirstOrDefault(x => x.Id == entity.Client.Id);
                 return await _repositoryOperation.InsertAsync(entity);
             }            
         }
@@ -42,7 +46,8 @@ namespace prototipo.caliset.Models.Operations
 
         public IEnumerable<Operation> GetAll()
         {
-            return _repositoryOperation.GetAll();
+            return  _repositoryOperation.GetAll();
+            
         }
 
         public Operation GetOperationById(int id)

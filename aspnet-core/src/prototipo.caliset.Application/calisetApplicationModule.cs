@@ -26,6 +26,7 @@ namespace prototipo.caliset
                 mapper.CreateMap<CreateClientInput, Client>().ReverseMap();
                 mapper.CreateMap<GetClientInput, Client>().ReverseMap();
                 mapper.CreateMap<GetClientOutput, Client>().ReverseMap();
+                mapper.CreateMap<ClientDto, Client>().ReverseMap();
             });
 
         }

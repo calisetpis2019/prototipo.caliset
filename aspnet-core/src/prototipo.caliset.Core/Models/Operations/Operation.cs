@@ -14,10 +14,8 @@ namespace prototipo.caliset.Models.Operations
         [DataType(DataType.Date)]
         [Required]
         public DateTime Date { get; set; }
-
         public string Commodity { get; set; }
         public string Destiny { get; set; }
-
         [Required]
         public virtual Client Client { get; set; }
 

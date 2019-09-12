@@ -19,6 +19,6 @@ namespace prototipo.caliset.Operations.Dto
 
         public DateTime CreationTime { get; set; }
 
-        public ClientDto Client { get; set; }
+        public  GetClientInput Client { get; set; }
     }
 }
