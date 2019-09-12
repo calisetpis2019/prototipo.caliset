@@ -116,6 +116,9 @@
     <text name="Date">Fecha</text>
     <text name="CreationDate">Fecha de Creación</text>
     <text name="AppName">Caliset</text>
-    
+    <text name="FieldIsRequired">Campo obligatorio</text>
+    <text name="Details">Detalles</text>
+    <text name="OperName">Nombre de operación</text>
+    <text name="CreateNewOperation">Crear operación</text>
   </texts>
 </localizationDictionary>
