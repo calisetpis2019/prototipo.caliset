@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using prototipo.caliset.Clients.Dto;
 using prototipo.caliset.Models.Operations;
 
 namespace prototipo.caliset.Operations.Dto
@@ -17,5 +18,6 @@ namespace prototipo.caliset.Operations.Dto
         public string Destiny { get; set; }
 
         public DateTime CreationTime { get; set; }
+        public GetClientInput Client { get; set; }
     }
 }

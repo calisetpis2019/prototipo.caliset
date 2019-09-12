@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Abp.Domain.Entities.Auditing;
 using System.ComponentModel.DataAnnotations.Schema;
+using prototipo.caliset.Models.Clients;
 
 namespace prototipo.caliset.Models.Operations
 {
@@ -16,6 +17,9 @@ namespace prototipo.caliset.Models.Operations
 
         public string Commodity { get; set; }
         public string Destiny { get; set; }
+
+        [Required]
+        public virtual Client Client { get; set; }
 
     }
 }

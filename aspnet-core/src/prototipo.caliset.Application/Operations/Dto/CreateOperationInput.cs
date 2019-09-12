@@ -1,4 +1,5 @@
 ﻿using Abp.AutoMapper;
+using prototipo.caliset.Clients.Dto;
 using prototipo.caliset.Models.Operations;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,7 @@ namespace prototipo.caliset.Operations.Dto
         public string Destiny { get; set; }
 
         public DateTime CreationTime { get; set; }
+
+        public ClientDto Client { get; set; }
     }
 }
