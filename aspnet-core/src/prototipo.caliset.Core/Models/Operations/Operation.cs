@@ -17,7 +17,7 @@ namespace prototipo.caliset.Models.Operations
         public string Commodity { get; set; }
         public string Destiny { get; set; }
         [Required]
-        public virtual Client Client { get; set; }
+        public Client Client { get; set; }
 
     }
 }

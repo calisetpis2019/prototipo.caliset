@@ -22,11 +22,13 @@ namespace prototipo.caliset
                 mapper.CreateMap<CreateOperationInput, Operation>().ReverseMap();
                 mapper.CreateMap<GetOperationInput, Operation>().ReverseMap();
                 mapper.CreateMap<GetOperationOutput, Operation>().ReverseMap();
+                mapper.CreateMap<UpdateOperationInput, Operation>().ReverseMap();
 
                 mapper.CreateMap<CreateClientInput, Client>().ReverseMap();
                 mapper.CreateMap<GetClientInput, Client>().ReverseMap();
                 mapper.CreateMap<GetClientOutput, Client>().ReverseMap();
                 mapper.CreateMap<ClientDto, Client>().ReverseMap();
+                mapper.CreateMap<UpdateClientInput, Client>().ReverseMap();
             });
 
         }

@@ -47,6 +47,7 @@ namespace prototipo.caliset.Clients
         public void Update(UpdateClientInput input)
         {
             var client = _clientManager.GetClientById(input.Id);
+            client.Name = input.Name;
             _clientManager.Update(client);
         }
     }

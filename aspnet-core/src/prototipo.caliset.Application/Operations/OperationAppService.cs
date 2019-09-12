@@ -44,8 +44,13 @@ namespace prototipo.caliset.Operations
         }
 
         public void Update(UpdateOperationInput input)
+            //NO MODIFICA EL CLIENTE
         {
             var operation = _operationManager.GetOperationById(input.Id);
+            operation.Commodity = input.Commodity;
+            operation.Destiny = input.Destiny;
+            operation.Date = input.Date;
+
             _operationManager.Update(operation);
         }
     }

@@ -1,8 +1,10 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Domain.Services;
 using Abp.UI;
+using Microsoft.EntityFrameworkCore;
 using prototipo.caliset.Models.Clients;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace prototipo.caliset.Models.Operations
@@ -46,13 +48,19 @@ namespace prototipo.caliset.Models.Operations
 
         public IEnumerable<Operation> GetAll()
         {
-            return  _repositoryOperation.GetAll();
+            return  _repositoryOperation.GetAll()
+                .Include(asset => asset.Client)
+                ;
             
         }
 
-        public Operation GetOperationById(int id)
+        public   Operation GetOperationById(int id)
         {
-            return _repositoryOperation.Get(id);
+
+            var List = GetAll();
+            return  List.FirstOrDefault(x => x.Id == id);
+
+            
         }
 
         public void Update(Operation entity)
