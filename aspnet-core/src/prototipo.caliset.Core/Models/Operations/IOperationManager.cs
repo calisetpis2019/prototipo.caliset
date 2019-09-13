@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Services;
+using prototipo.caliset.Models.Comments;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,5 +14,7 @@ namespace prototipo.caliset.Models.Operations
         Task<Operation> Create(Operation entity);
         void Update(Operation entity);
         void Delete(int id);
+        IEnumerable<Comment> GetComments(int id);
+        void AddComent(int id, Comment cmm);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using prototipo.caliset.Comments.Dto;
 using prototipo.caliset.Operations.Dto;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace prototipo.caliset.Operations
         void Update(UpdateOperationInput input);
         void Delete(DeleteOperationInput input);
         GetOperationOutput GetOperationById(GetOperationInput input);
+        IEnumerable<GetCommentOutput> GetOperationAllComments(GetOperationInput input);
+        Task AddComment(GetOperationInput OpInput, CreateCommentInput input);
 
     }
 }

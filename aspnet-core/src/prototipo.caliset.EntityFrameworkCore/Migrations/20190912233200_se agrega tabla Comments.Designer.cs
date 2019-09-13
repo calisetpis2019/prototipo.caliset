@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using prototipo.caliset.EntityFrameworkCore;
 
 namespace prototipo.caliset.Migrations
 {
     [DbContext(typeof(calisetDbContext))]
-    partial class calisetDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190912233200_se agrega tabla Comments")]
+    partial class seagregatablaComments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1084,11 +1086,11 @@ namespace prototipo.caliset.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
-                    b.Property<int?>("OperationId");
+                    b.Property<long>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OperationId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -1330,9 +1332,10 @@ namespace prototipo.caliset.Migrations
 
             modelBuilder.Entity("prototipo.caliset.Models.Comments.Comment", b =>
                 {
-                    b.HasOne("prototipo.caliset.Models.Operations.Operation")
-                        .WithMany("Comments")
-                        .HasForeignKey("OperationId");
+                    b.HasOne("prototipo.caliset.Authorization.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("prototipo.caliset.Models.Operations.Operation", b =>

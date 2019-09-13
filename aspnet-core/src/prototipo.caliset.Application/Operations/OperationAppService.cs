@@ -1,5 +1,7 @@
 ﻿using Abp.Application.Services;
 using AutoMapper;
+using prototipo.caliset.Comments.Dto;
+using prototipo.caliset.Models.Comments;
 using prototipo.caliset.Models.Operations;
 using prototipo.caliset.Operations.Dto;
 using System;
@@ -13,9 +15,12 @@ namespace prototipo.caliset.Operations
     public class OperationAppService : ApplicationService, IOperationAppService
     {
         private readonly IOperationManager _operationManager;
-        public OperationAppService(IOperationManager operationManager)
+        private readonly ICommentManager _commentManager;
+        public OperationAppService(IOperationManager operationManager, ICommentManager commentManager)
         {
             _operationManager = operationManager;
+            _commentManager = commentManager;
+
         }
 
         public IEnumerable<GetOperationOutput> GetAll()
@@ -52,6 +57,21 @@ namespace prototipo.caliset.Operations
             operation.Date = input.Date;
 
             _operationManager.Update(operation);
+        }
+
+        public IEnumerable<GetCommentOutput> GetOperationAllComments(GetOperationInput input)
+        {
+            var getComments = _operationManager.GetOperationById(input.Id);
+            var CmmRet = getComments.Comments.ToList();
+            List<GetCommentOutput> output = ObjectMapper.Map<List<GetCommentOutput>>(CmmRet) ;
+            return output;
+        }
+
+        public async Task AddComment(GetOperationInput OpInput, CreateCommentInput input)
+        {
+            var cmm = ObjectMapper.Map<Comment>(input);
+            _operationManager.AddComent(OpInput.Id, cmm);
+           await _commentManager.Create(cmm);
         }
     }
 }

@@ -3,6 +3,7 @@ using Abp.Domain.Services;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using prototipo.caliset.Models.Clients;
+using prototipo.caliset.Models.Comments;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -50,9 +51,12 @@ namespace prototipo.caliset.Models.Operations
         {
             return  _repositoryOperation.GetAll()
                 .Include(asset => asset.Client)
+                .Include(cmm => cmm.Comments)
                 ;
             
         }
+
+       
 
         public   Operation GetOperationById(int id)
         {
@@ -67,5 +71,17 @@ namespace prototipo.caliset.Models.Operations
         {
             _repositoryOperation.Update(entity);
         }
+
+        public void AddComent(int id, Comment cmm)
+        {
+            GetOperationById(id).Comments.Append(cmm);
+        }
+
+        public IEnumerable<Comment> GetComments(int id)
+        {
+            var List = GetAll();
+            return List.FirstOrDefault(x => x.Id == id).Comments ;
+        }
+
     }
 }
