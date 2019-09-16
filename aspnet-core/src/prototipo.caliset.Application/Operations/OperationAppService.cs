@@ -1,5 +1,7 @@
 ﻿using Abp.Application.Services;
+using Abp.Authorization;
 using AutoMapper;
+using prototipo.caliset.Authorization;
 using prototipo.caliset.Models.Operations;
 using prototipo.caliset.Operations.Dto;
 using System;
@@ -25,6 +27,7 @@ namespace prototipo.caliset.Operations
             return output;
         }
 
+        [AbpAuthorize(PermissionNames.Administrador)]
         public async Task Create(CreateOperationInput input)
         {
             var operation = ObjectMapper.Map<Operation>(input);
